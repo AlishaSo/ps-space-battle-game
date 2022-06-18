@@ -4,6 +4,7 @@ class Ship {
     this.hull = hull;
     this.firepower = firepower;
     this.accuracy = accuracy;
+    this.shipDestroyed = false;
   }
 
   attack(attackee) {
@@ -25,6 +26,14 @@ class Ship {
         console.log('The alien has missed You! 🙌🏽');
     }
   }
+
+  isShipDestroyed() {
+    if(this.hull <= 0) {
+      this.shipDestroyed = true;
+      return true;
+    }
+    return false;
+  }
 }
 
 const createEnemyShips = () => {
@@ -43,16 +52,17 @@ const playGame = () => {
   const theUSSHelloWorld = new Ship(20, 5, .7, 'hero');
   const aliens = createEnemyShips();
 
-  // console.log(theUSSHelloWorld, aliens)
-  // theUSSHelloWorld.attack(aliens[0]);
-  // console.log(aliens[0]);
+  console.log(theUSSHelloWorld, aliens[0])
+  theUSSHelloWorld.attack(aliens[0]);
+  console.log(aliens[0]);
+  if(aliens[0].isShipDestroyed()) {
+    console.log('The alien has been destoyed! 💯');
+  }
+  else {
+    console.log('The alien is attacking you! 😡');
+    aliens[0].attack(theUSSHelloWorld);
+  }
+
 }
 
 playGame();
-
-// const hero = new Ship(20, 5, .7, 'hero');
-// const alien = new Ship(Math.floor(Math.random() * (6 - 3 + 1) + 3), Math.floor(Math.random() * (4 - 2 + 1) + 2), Number((Math.random() * (.8-.6) + .6).toFixed(1)))
-
-// console.log(hero, alien);
-// hero.attack(alien);
-// alien.attack(hero);
