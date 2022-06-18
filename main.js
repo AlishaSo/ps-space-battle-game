@@ -1,13 +1,13 @@
 class Ship {
-  constructor(hull, firepower, accuracy, name = 'alien') {
-    this.name = name;
+  constructor(hull, firepower, accuracy, type = 'alien') {
+    this.type = type;
     this.hull = hull;
     this.firepower = firepower;
     this.accuracy = accuracy;
   }
 
   attack(attackee) {
-    const hero = this.name == 'hero';
+    const hero = this.type == 'hero';
     if(this.accuracy > attackee.accuracy) {
       attackee.hull -= this.firepower;
       if(hero) {
