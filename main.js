@@ -12,12 +12,12 @@ class Ship {
     if(this.accuracy > attackee.accuracy) {
       attackee.hull -= this.firepower;
       if(hero) {
-        console.log(`You Hit an alien! 💪🏽`);
+        console.log(`You Hit the alien! 💪🏽`);
       }
       else
         console.log('The alien has hit You 😖');
       console.log(`You have ${hero ? 'done' : 'taken'} ${this.firepower} damage`);
-      console.log(`${!hero ? 'You have' : 'The alien has'} ${attackee.hull <= 0 ? 0 : attackee.hull} left`);
+      console.log(`${!hero ? 'You have' : 'The alien has'} ${attackee.hull <= 0 ? 0 : attackee.hull} hull left`);
     }
     else {
       if(hero)
