@@ -27,6 +27,18 @@ class Ship {
   }
 }
 
+const createEnemyShips = () => {
+  let enemyShips = [];
+  for(let i = 0; i < 6; i++) {
+    let hull = Math.floor(Math.random() * (6 - 3 + 1) + 3);
+    let firepower = Math.floor(Math.random() * (4 - 2 + 1) + 2);
+    let accuracy = Number((Math.random() * (.8-.6) + .6).toFixed(1));
+
+    enemyShips.push(new Ship(hull, firepower, accuracy));
+  }
+  return enemyShips;
+}
+
 // const hero = new Ship(20, 5, .7, 'hero');
 // const alien = new Ship(Math.floor(Math.random() * (6 - 3 + 1) + 3), Math.floor(Math.random() * (4 - 2 + 1) + 2), Number((Math.random() * (.8-.6) + .6).toFixed(1)))
 
