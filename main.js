@@ -1,5 +1,5 @@
 class Ship {
-  constructor(name = 'alien', hull, firepower, accuracy) {
+  constructor(hull, firepower, accuracy, name = 'alien') {
     this.name = name;
     this.hull = hull;
     this.firepower = firepower;
