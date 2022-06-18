@@ -61,10 +61,10 @@ const playGame = () => {
   let validUserInput = false;
   let keepPlaying = true;
 
-  console.log(theUSSHelloWorld, aliens[0])
-  theUSSHelloWorld.attack(aliens[0]);
-  console.log(aliens[0]);
-  if(aliens[0].isShipDestroyed()) {
+  console.log(theUSSHelloWorld, aliens[index])
+  theUSSHelloWorld.attack(aliens[index]);
+  console.log(aliens[index]);
+  if(aliens[index].isShipDestroyed()) {
     console.log('The alien has been destoyed! 💯');
 
     while(!validUserInput) {
@@ -87,7 +87,7 @@ const playGame = () => {
   }
   else {
     console.log('The alien is attacking you! 😡');
-    aliens[0].attack(theUSSHelloWorld);
+    aliens[index].attack(theUSSHelloWorld);
   }
 
 }
