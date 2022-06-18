@@ -1,3 +1,9 @@
+const readlineSync = require("readline-sync");
+
+function getInput(prompt) {
+  return readlineSync.question(`${prompt}: `);
+}
+
 class Ship {
   constructor(hull, firepower, accuracy, type = 'alien') {
     this.type = type;
@@ -51,12 +57,33 @@ const createEnemyShips = () => {
 const playGame = () => {
   const theUSSHelloWorld = new Ship(20, 5, .7, 'hero');
   const aliens = createEnemyShips();
+  let index = 0;
+  let validUserInput = false;
+  let keepPlaying = true;
 
   console.log(theUSSHelloWorld, aliens[0])
   theUSSHelloWorld.attack(aliens[0]);
   console.log(aliens[0]);
   if(aliens[0].isShipDestroyed()) {
     console.log('The alien has been destoyed! 💯');
+
+    while(!validUserInput) {
+      let userChoice = getInput('Would you like to attack (a) the next enemy, or retreat (r)?');
+
+      if(userChoice == 'a') {
+        keepPlaying = true;
+        index++;
+        validUserInput = true;
+      }
+      else if(userChoice == 'r') {
+        keepPlaying = false;
+        validUserInput = true;
+      }
+      else {
+        console.log("Please enter a valid choice");
+        validUserInput = false;
+      }
+    }
   }
   else {
     console.log('The alien is attacking you! 😡');
