@@ -54,6 +54,19 @@ const createEnemyShips = () => {
   return enemyShips;
 }
 
+const playAgain = () => {
+  const userChoice = getInput('\nWould you like to play again? (y/n)');
+
+  if(userChoice.toLowerCase() == 'y')
+    playGame()
+  else if(userChoice.toLowerCase() == 'n')
+    console.log('That was a great game! 👊🏽');
+  else {
+    console.log('Please enter a valid choice');
+    playAgain();
+  }
+}
+
 const playGame = () => {
   const theUSSHelloWorld = new Ship(20, 5, .7, 'hero');
   const aliens = createEnemyShips();
@@ -101,7 +114,7 @@ const playGame = () => {
     }
   }
   console.log("That's the end of the game! Til next time 👋🏽");
-
+  playAgain();
 }
 
 playGame();
