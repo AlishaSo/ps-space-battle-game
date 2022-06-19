@@ -1,8 +1,8 @@
-const readlineSync = require("readline-sync");
+// const readlineSync = require("readline-sync");
 
-function getInput(prompt) {
-  return readlineSync.question(`${prompt}: `);
-}
+// function getInput(prompt) {
+//   return readlineSync.question(`${prompt}: `);
+// }
 
 class Ship {
   constructor(hull, firepower, accuracy, type = 'alien') {
@@ -17,19 +17,19 @@ class Ship {
     if(Math.random() < this.accuracy) {
       attackee.hull -= this.firepower;
       if(hero) {
-        console.log(`You Hit the alien! 💪🏽`);
+        console.log(`%cYou Hit the alien! 💪🏽`, 'font-size: 1rem; color: red');
       }
       else
-        console.log('The alien has hit You 😖');
+        console.log('%cThe alien has hit You 😖', 'font-size: 1rem; color: red');
 
-      console.log(`You have ${hero ? 'done' : 'taken'} ${this.firepower} damage`);
-      console.log(`${!hero ? 'You have' : 'The alien has'} ${attackee.hull <= 0 ? 0 : attackee.hull} hull left`);
+      console.log(`%cYou have ${hero ? 'done' : 'taken'} ${this.firepower} damage`, 'font-size: 1rem; font-style: italic; background: azure; border: 1px solid grey');
+      console.log(`%c${!hero ? 'You have' : 'The alien has'} ${attackee.hull <= 0 ? 0 : attackee.hull} hull left`, 'font-size: 1rem; font-style: italic');
     }
     else {
       if(hero)
-        console.log('You have Missed the alien 🙃');
+        console.log('%cYou have Missed the alien 🙃', 'font-size: 1rem; color: yellow; text-shadow: black 1px 1px');
       else
-        console.log('The alien has missed You! 🙌🏽');
+        console.log('%cThe alien has missed You! 🙌🏽', 'font-size: 1rem; color: yellow; text-shadow: black 1px 1px');
       console.log('');
     }
   }
@@ -55,12 +55,12 @@ const createEnemyShips = () => {
 }
 
 const playAgain = () => {
-  const userChoice = getInput('\nWould you like to play again? (y/n)');
+  const userChoice = window.prompt('\nDo you want to play again? (y/n)');
 
   if(userChoice.toLowerCase() == 'y')
     playGame()
   else if(userChoice.toLowerCase() == 'n')
-    console.log('That was a great game! 👊🏽');
+    console.log('%cThat was a great game! 👊🏽', 'font-size: 1rem; color: #C0C0C0');
   else {
     console.log('Please enter a valid choice');
     playAgain();
@@ -75,9 +75,10 @@ const playGame = () => {
   let keepPlaying = true;
   
   while(keepPlaying) {
+    console.log('%cYou are attacking an alien! 🥊', 'font-size: 1rem; color: green');
     theUSSHelloWorld.attack(aliens[index]);
     if(aliens[index].isShipDestroyed()) {
-      console.log('The alien has been destroyed! 💯');
+      console.log('%cThe alien has been destroyed! 💯', 'font-size: 1rem; color: #2E1A62');
 
       if(index >= 5) {
         keepPlaying = false;
@@ -85,7 +86,7 @@ const playGame = () => {
       else {
         while(!validUserInput) {
           console.log('');
-          let userChoice = getInput('Would you like to attack (a) the next enemy, or retreat (r)?');
+          let userChoice = window.prompt('Would you like to attack (a) the next enemy, or retreat (r)?');
 
           if(userChoice == 'a') {
             keepPlaying = true;
@@ -105,15 +106,15 @@ const playGame = () => {
       }
     }
     else {
-      console.log('The alien is attacking you! 😡');
+      console.log('%cThe alien is attacking you! 😡', 'font-size: 1rem; color: blue');
       aliens[index].attack(theUSSHelloWorld);
       if(theUSSHelloWorld.isShipDestroyed()) {
-        console.log('You have been destroyed 🥲');
+        console.log('%cYou have been destroyed 🥲', 'font-size: 1rem; font-style: bold; color: red');
         keepPlaying = false;
       }
     }
   }
-  console.log("That's the end of the game! Til next time 👋🏽");
+  console.log("%cThat's the end of the game! Til next time 👋🏽", 'font-size: 1rem; color: #D4AF37');
   playAgain();
 }
 
