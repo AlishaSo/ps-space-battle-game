@@ -15,13 +15,14 @@ class Ship {
 
   attack(attackee) {
     const hero = this.type == 'hero';
-    if(this.accuracy > attackee.accuracy) {
+    if(Math.random() < this.accuracy) {
       attackee.hull -= this.firepower;
       if(hero) {
         console.log(`You Hit the alien! 💪🏽`);
       }
       else
         console.log('The alien has hit You 😖');
+
       console.log(`You have ${hero ? 'done' : 'taken'} ${this.firepower} damage`);
       console.log(`${!hero ? 'You have' : 'The alien has'} ${attackee.hull <= 0 ? 0 : attackee.hull} hull left`);
     }
@@ -60,35 +61,49 @@ const playGame = () => {
   let index = 0;
   let validUserInput = false;
   let keepPlaying = true;
+  
+  while(keepPlaying) {
+    // console.log(theUSSHelloWorld, aliens[index])
+    theUSSHelloWorld.attack(aliens[index]);
+    console.log('');
+    console.log(aliens[index]);
+    if(aliens[index].isShipDestroyed()) {
+      console.log('The alien has been destroyed! 💯');
 
-  console.log(theUSSHelloWorld, aliens[index])
-  theUSSHelloWorld.attack(aliens[index]);
-  console.log(aliens[index]);
-  if(aliens[index].isShipDestroyed()) {
-    console.log('The alien has been destoyed! 💯');
-
-    while(!validUserInput) {
-      let userChoice = getInput('Would you like to attack (a) the next enemy, or retreat (r)?');
-
-      if(userChoice == 'a') {
-        keepPlaying = true;
-        index++;
-        validUserInput = true;
-      }
-      else if(userChoice == 'r') {
+      if(index >= 5) {
         keepPlaying = false;
-        validUserInput = true;
       }
       else {
-        console.log("Please enter a valid choice");
+        while(!validUserInput) {
+          let userChoice = getInput('Would you like to attack (a) the next enemy, or retreat (r)?');
+
+          if(userChoice == 'a') {
+            keepPlaying = true;
+            index++;
+            validUserInput = true;
+          }
+          else if(userChoice == 'r') {
+            keepPlaying = false;
+            validUserInput = true;
+          }
+          else {
+            console.log("Please enter a valid choice");
+            validUserInput = false;
+          }
+        }
         validUserInput = false;
       }
     }
+    else {
+      console.log('The alien is attacking you! 😡');
+      aliens[index].attack(theUSSHelloWorld);
+      if(theUSSHelloWorld.isShipDestroyed()) {
+        console.log('You have been destroyed 🥲');
+        keepPlaying = false;
+      }
+    }
   }
-  else {
-    console.log('The alien is attacking you! 😡');
-    aliens[index].attack(theUSSHelloWorld);
-  }
+  console.log("That's the end of the game! Til next time 👋🏽");
 
 }
 
