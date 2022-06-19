@@ -81,7 +81,7 @@ const playGame = () => {
     console.log('%cYou are attacking an alien! 🥊', 'font-size: 1rem; color: green');
     theUSSHelloWorld.attack(aliens[index]);
     if(aliens[index].isShipDestroyed()) {
-      console.log('%cThe alien has been destroyed! 💯', 'font-size: 1rem; color: #2E1A62');
+      console.log('%cThe alien has been destroyed! 💯', 'font-size: 1rem; color: #6305DC');
 
       if(index >= 5) {
         keepPlaying = false;
