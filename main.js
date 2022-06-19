@@ -57,6 +57,9 @@ const createEnemyShips = () => {
 const playAgain = () => {
   const userChoice = window.prompt('\nDo you want to play again? (y/n)');
 
+  if(userChoice == null) {
+    return;
+  }
   if(userChoice.toLowerCase() == 'y')
     playGame()
   else if(userChoice.toLowerCase() == 'n')
@@ -88,7 +91,10 @@ const playGame = () => {
           console.log('');
           let userChoice = window.prompt('Would you like to attack (a) the next enemy, or retreat (r)?');
 
-          if(userChoice == 'a') {
+          if(userChoice == null) {
+            return;
+          }
+          else if(userChoice == 'a') {
             keepPlaying = true;
             index++;
             validUserInput = true;
