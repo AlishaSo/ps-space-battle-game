@@ -30,12 +30,14 @@ class Ship {
         console.log('You have Missed the alien 🙃');
       else
         console.log('The alien has missed You! 🙌🏽');
+      console.log('');
     }
   }
 
   isShipDestroyed() {
     if(this.hull <= 0)
       return true;
+    console.log('');
     return false;
   }
 }
@@ -60,10 +62,7 @@ const playGame = () => {
   let keepPlaying = true;
   
   while(keepPlaying) {
-    // console.log(theUSSHelloWorld, aliens[index])
     theUSSHelloWorld.attack(aliens[index]);
-    console.log('');
-    // console.log(aliens[index]);
     if(aliens[index].isShipDestroyed()) {
       console.log('The alien has been destroyed! 💯');
 
@@ -72,6 +71,7 @@ const playGame = () => {
       }
       else {
         while(!validUserInput) {
+          console.log('');
           let userChoice = getInput('Would you like to attack (a) the next enemy, or retreat (r)?');
 
           if(userChoice == 'a') {
