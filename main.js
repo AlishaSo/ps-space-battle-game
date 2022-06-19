@@ -22,7 +22,7 @@ class Ship {
       else
         console.log('%cThe alien has hit You 😖', 'font-size: 1rem; color: red');
 
-      console.log(`%cYou have ${hero ? 'done' : 'taken'} ${this.firepower} damage`, 'font-size: 1rem; font-style: italic; background: azure; border: 1px solid grey');
+      console.log(`%cYou have ${hero ? 'done' : 'taken'} ${this.firepower} damage`, 'font-size: 1rem; font-style: italic; color: grey; background: azure; border: 1px solid grey');
       console.log(`%c${!hero ? 'You have' : 'The alien has'} ${attackee.hull <= 0 ? 0 : attackee.hull} hull left`, 'font-size: 1rem; font-style: italic');
     }
     else {
@@ -78,7 +78,7 @@ const playGame = () => {
   let keepPlaying = true;
   
   while(keepPlaying) {
-    console.log('%cYou are attacking an alien! 🥊', 'font-size: 1rem; color: green');
+    console.log('%cYou are attacking an alien! 🥊', 'font-size: 1rem; color: #03AC13');
     theUSSHelloWorld.attack(aliens[index]);
     if(aliens[index].isShipDestroyed()) {
       console.log('%cThe alien has been destroyed! 💯', 'font-size: 1rem; color: #6305DC');
@@ -112,7 +112,7 @@ const playGame = () => {
       }
     }
     else {
-      console.log('%cThe alien is attacking you! 😡', 'font-size: 1rem; color: blue');
+      console.log('%cThe alien is attacking you! 😡', 'font-size: 1rem; color: #1338BE');
       aliens[index].attack(theUSSHelloWorld);
       if(theUSSHelloWorld.isShipDestroyed()) {
         console.log('%cYou have been destroyed 🥲', 'font-size: 1rem; font-style: bold; color: red');
