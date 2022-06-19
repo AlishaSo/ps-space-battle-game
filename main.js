@@ -124,4 +124,6 @@ const playGame = () => {
   playAgain();
 }
 
-playGame();
+setTimeout(() => {
+  playGame();
+}, 500);
