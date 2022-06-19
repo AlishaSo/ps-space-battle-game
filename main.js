@@ -10,7 +10,6 @@ class Ship {
     this.hull = hull;
     this.firepower = firepower;
     this.accuracy = accuracy;
-    this.shipDestroyed = false;
   }
 
   attack(attackee) {
@@ -35,10 +34,8 @@ class Ship {
   }
 
   isShipDestroyed() {
-    if(this.hull <= 0) {
-      this.shipDestroyed = true;
+    if(this.hull <= 0)
       return true;
-    }
     return false;
   }
 }
@@ -66,7 +63,7 @@ const playGame = () => {
     // console.log(theUSSHelloWorld, aliens[index])
     theUSSHelloWorld.attack(aliens[index]);
     console.log('');
-    console.log(aliens[index]);
+    // console.log(aliens[index]);
     if(aliens[index].isShipDestroyed()) {
       console.log('The alien has been destroyed! 💯');
 
